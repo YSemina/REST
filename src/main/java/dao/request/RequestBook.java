@@ -1,4 +1,4 @@
-package repository;
+package dao.request;
 
 public final class RequestBook {
     public static final String FIND_ALL = """
@@ -6,13 +6,13 @@ public final class RequestBook {
             ORDER BY author_id, title
             """;
     public static final String FIND_BY_AUTHOR_ID = """
-            SELECT id, title, quantity
+            SELECT books.id, author_id, title, quantity
             FROM books
             JOIN authors ON books.author_id = authors.id
             WHERE author_id=?
             """;
     public static final String FIND_BY_ID = """
-            SELECT author_id, title, quantity
+            SELECT id, author_id, title, quantity
             FROM books
             WHERE id=?
             """;
@@ -27,8 +27,8 @@ public final class RequestBook {
 
     public static final String UPDATE = """
             UPDATE books
-            SET quantity=?
-            WHERE title=? AND author_id=?
+            SET quantity=?, title=?
+            WHERE id=?
             """;
 
     private RequestBook() {

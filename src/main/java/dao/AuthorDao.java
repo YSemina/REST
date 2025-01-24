@@ -1,8 +1,8 @@
 package dao;
 
+import dao.request.RequestAuthor;
 import db.ConnectionManager;
 import model.Author;
-import repository.RequestAuthor;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -89,6 +89,7 @@ public class AuthorDao implements Dao<Author> {
         try (Connection connection = ConnectionManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(SQL)) {
             statement.setString(1, author.getName());
+            statement.setInt(2, author.getId());
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException("Ошибка при обновлении автора", e);

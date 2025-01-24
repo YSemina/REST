@@ -1,8 +1,8 @@
 package dao;
 
+import dao.request.RequestBook;
 import db.ConnectionManager;
 import model.Book;
-import repository.RequestBook;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -37,7 +37,7 @@ public class BookDao implements Dao<Book> {
         try (Connection connection = ConnectionManager.getConnection();
              PreparedStatement statement = connection.prepareStatement(SQL)) {
             statement.setInt(1, authorId);
-            var resultSet = statement.executeQuery();
+            ResultSet resultSet = statement.executeQuery();
             List<Book> books = new ArrayList<>();
             while (resultSet.next()) {
                 books.add(buildBook(resultSet));
@@ -106,7 +106,7 @@ public class BookDao implements Dao<Book> {
              PreparedStatement statement = connection.prepareStatement(SQL)) {
             statement.setInt(1, book.getQuantity());
             statement.setString(2, book.getBookTitle());
-            statement.setInt(3, book.getAuthorId());
+            statement.setInt(3, book.getId());
             return statement.executeUpdate() > 0;
         } catch (SQLException e) {
             throw new RuntimeException("Ошибка при обновлении книги", e);

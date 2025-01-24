@@ -37,8 +37,8 @@ public class BookService implements Service<BookDto> {
                 orElseThrow(()->new RuntimeException("Не существует книги с id = " + id));
     }
 
-    public List<BookDto> findByAuthor(AuthorDto author) {
-        List<Book> books = bookDao.findByAuthorId(author.getId());
+    public List<BookDto> findByAuthor(int authorId) {
+        List<Book> books = bookDao.findByAuthorId(authorId);
         List<BookDto> bookDto = new ArrayList<>();
         for (Book book : books) {
             bookDto.add(bookMapper.toDto(book));

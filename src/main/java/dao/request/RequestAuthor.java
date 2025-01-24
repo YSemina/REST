@@ -1,4 +1,4 @@
-package repository;
+package dao.request;
 
 public final class RequestAuthor {
 
@@ -6,7 +6,7 @@ public final class RequestAuthor {
             SELECT id, name FROM authors
             """;
     public static final String FIND_BY_ID = """
-            SELECT name FROM authors
+            SELECT id, name FROM authors
             WHERE id=?
             """;
     public static final String DELETE_BY_ID = """

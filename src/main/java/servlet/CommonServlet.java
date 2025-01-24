@@ -16,6 +16,10 @@ public class CommonServlet extends HttpServlet {
     protected CommonServlet() {
     }
 
+    protected int parseInt(String input) {
+        return input != null ? Integer.parseInt(input) : 0;
+    }
+
     protected void sendResponse(HttpServletResponse response, Object data, int status) throws IOException {
         response.setStatus(status);
         response.setContentType("text/json");

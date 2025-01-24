@@ -29,7 +29,7 @@ public class AuthorService implements Service<AuthorDto> {
     }
 
     @Override
-    public AuthorDto findById(int id) {
+    public AuthorDto findById(int id) throws RuntimeException {
         return authorDao.findById(id).
                 map(authorMapper::toDto).
                 orElseThrow(()->new RuntimeException("Не существует автора с id = " + id));
